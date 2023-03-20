@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SymGame - Accueil{% endblock %}
+
+
+
+{% block body %}
+
+<div class="container mt-5">
+
+    <div class="jumbotron">
+    <h1 class="display-4">Bienvenue sur SymGame !</h1>
+    <p class="lead">SymGame est une application qui va te permettre de crée des fiches de jeux-vidéo que tu pourras partager à la communauté.</p>
+    <hr class="my-4">
+    </div>
+
+    <div class="d-flex justify-content-around flex-wrap">
+
+	{% for game in games %}
+	
+	<div class="card border-primary mb-3" style="min-width: 20rem; max-width: 20rem;">
+		<div class="card-header">Fiche de jeu n°{{ game.id }}</div>
+		<div class="card-body">
+			<p class="card-title"># Nom du jeu : </br>- {{ game.name }}</p>
+			<p class="card-text"># Description : </br>{{ game.description}}</p>
+            <p class="card-text"># Prix : </br>{{ game.price}} €</p>
+		</div>
+	</div>
+	
+	{% endfor %}
+
+</div>
+
+</div>
+
+
+{% endblock %}
+

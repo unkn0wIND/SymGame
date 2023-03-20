@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SymGame - Mes jeux{% endblock %}
+
+{% block body %}
+
+ <div class="container mt-4">
+
+       {# Message Flash qu'on a implémenter dans le controller une fois qu'on ajoute un jeu#}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+    <h1>Mes jeux</h1>
+
+    {# Lien pour ajouter un jeu #}
+    <a href="{{path('game_new')}}" class="btn btn-primary">Ajouter un jeu</a>
+
+    {# Si le nombre d'item des jeux(games) n'est pas vide alors afficher le contenu #}
+    {% if not games.items is same as([]) %} 
+
+        <div class="count mt-3 mb-3">
+            Total de jeux dans mon agenda : {{ games.getTotalItemCount}} {#Nombre total de jeux présent#}
+        </div>  
+        
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Numéro ID</th>
+                            <th scope="col">Nom du jeux</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Date de création</th>
+                            <th scope="col">Modifier</th>
+                            <th scope="col">Supprimer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for game in games %}         {#Boucle pour lister nos jeux dans notre tableau#}
+                            <tr class="table-dark">
+                            <td>{{ game.id }}</td>
+                            <th scope="row">{{ game.name }}</th>
+                            <td>{{ game.description }}</td>
+                            <td>{{ game.price}} €</td>
+                            <td>{{ game.createdAt|date('d-m-Y')}}</td> {#Filtre pour afficher la date#}
+                            <td><a href="{{path('game_edit', { id: game.id })}}" class="btn btn-info">Modifier</a></td>
+                            <td><a href="{{path('game_delete', { id: game.id })}}" class="btn btn-warning">Supprimer</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="navigation d-flex justify-content-center">
+                    {{ knp_pagination_render(games)}} {#Appel de paginator pour games#}
+                </div>
+    {# Sinon  #}
+    {% else %}
+        <h4 class="mt-4"> Il n'y a pas de fiche de jeu présent dans mon agenda !</h4>
+    {% endif %}
+ </div>
+
+{% endblock %}

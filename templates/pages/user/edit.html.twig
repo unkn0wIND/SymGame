@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SymGame - Gestion du compte{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-4">
+        <h1>Mettre à jour mes informations</h1>
+
+        {# Message Flash #}
+        {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {{form(form)}} {#Formulaire#}
+    </div>
+
+{% endblock %}

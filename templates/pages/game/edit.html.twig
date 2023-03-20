@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SymGame - Modifier un jeu{% endblock %}
+
+
+
+{% block body %}
+
+    <div class="container mt-5">
+
+        <h1 class="mt4">Modification d'un jeu</h1>
+
+        
+        {# Initialisation du formulaire #}
+        {{ form_start(form) }}   
+
+            <div class="form-group">
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name) }}
+                <div class="form-error">
+                {{ form_errors(form.name) }}   {# En cas d'erreur #}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.description) }}
+                {{ form_widget(form.description) }}
+                <div class="form-error">
+                {{ form_errors(form.description) }} {# En cas d'erreur #}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.price) }}
+                {{ form_widget(form.price) }}
+                <div class="form-error">
+                {{ form_errors(form.price) }} {# En cas d'erreur #}
+                </div>
+            </div>
+
+            <div class="form-group">
+               {{ form_row(form.submit)}} {# Boutton Submit #}
+            </div>
+            
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}
+

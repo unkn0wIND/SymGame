@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>
+        {% block title %}{% endblock %} {# Bloc title pour nos pages #}
+        </title>
+
+        {# Favicon #}
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+
+        {# Lien bootstrap-bootswatch #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="https://bootswatch.com/5/sketchy/_variables.scss">
+            <link rel="stylesheet" href="https://bootswatch.com/5/sketchy/bootstrap.min.css">
+        {% endblock %}
+
+        {# Lien pour nos app js #}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+
+    <body>
+        {# Inclusion de notre navbar #}
+        {% block header%}
+            {% include "partials/_header.html.twig"%}
+        {% endblock %}
+        {# le bloc body pour nos pages #}
+        {% block body %}{% endblock %}
+    </body>
+
+
+</html>
